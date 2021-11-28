@@ -1,9 +1,9 @@
 let contactList = [  
 	{ 
 		name: "Thor Odinson", 
-		phone: "Send A pigeon", 
+		phone: "Send A pigeon Also", 
 		address: "926 Thor Street, Asgard",    
-		email: "Send A pigeon Also",  
+		email: "Send A pigeon",  
 	},   
 	{    
 		name: "Tony Stark",    
@@ -15,7 +15,7 @@ let contactList = [ 
 		name: "Nemo",    
 		phone: "Im a fish, dont have one",    
 		address: "Saltwater Ave.",    
-		email: "Chungus_Corp@gmail.com",  
+		email: "Im a fish bro i dont have one",  
 	},
 	{    
 		name: "Peter Parker",    
@@ -30,11 +30,11 @@ let contactList = [ 
 
 //index page ---------------------------------------------------------------------------------
 
-// window.addEventListener('load', ()=> {
-// 	cleanUpIndex()
-// 	renderIndex()
-// 	e.preventDefault()
-// })
+window.addEventListener('load', (e)=> {
+	cleanUpIndex()
+	renderIndex()
+	e.preventDefault()
+})
 let contact_link = document.querySelector('.nav-home')
 // contact_link.addEventListener('click', cleanUpIndex)
 // contact_link.addEventListener('click', renderIndex)
@@ -267,15 +267,24 @@ function renderCreate(){
 		  email: document.getElementById('contactemail').value
 		
 	  }
-	  document.forms[0].reset();
-	  contactList.push(data_stuff)
-	  console.log(contactList)
-	  cleanUpIndex()
-	  renderIndex()
+
+	  let check = data_stuff.name
+	  if (check.length > 0) {
+		contactList.push(data_stuff)
+		document.forms[0].reset();
+		cleanUpIndex()
+		renderIndex()
+	  }
+	  else {
+		  alert('You left the form blank. Do not do that, or else...')
+	  }
+	  
   }
 
   const save_btn = document.getElementById('savecontact')
   save_btn.addEventListener('click', addData)
+
+ 
 
 }
 
