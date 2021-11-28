@@ -28,15 +28,25 @@ const contactList = [ 
 
 //index page ---------------------------------------------------------------------------------
 
-const contact_link = document.querySelector('.nav-home')
-contact_link.addEventListener('click', cleanUpIndex)
-contact_link.addEventListener('click', renderIndex)
+window.addEventListener('load', ()=> {
+	cleanUpIndex()
+	renderIndex()
+	e.preventDefault()
+})
+let contact_link = document.querySelector('.nav-home')
+// contact_link.addEventListener('click', cleanUpIndex)
+// contact_link.addEventListener('click', renderIndex)
+contact_link.addEventListener('click', (e) => {
+	cleanUpIndex()
+	renderIndex()
+	e.preventDefault()
+})
+
 
 
 //function #1 cleanUpIndex
-function cleanUpIndex(e) {
+function cleanUpIndex() {
 	const cards = document.querySelectorAll('.main > *')
-	e.preventDefault()
 	for (const card of cards)
 		card.remove()
 }
@@ -44,8 +54,8 @@ function cleanUpIndex(e) {
 
 //function #2 createSingleIndex
 function createSingleIndex(name) {
-
-	return `<a href="page3.html"><div class="contact"><p>${name}</p></div></a>`
+	let index = `<a href="page3.html"><div class="contact"><p>${name}</p></div></a>`
+	return index
 }
 
 // function #3 renderIndex 
@@ -55,11 +65,11 @@ function renderIndex() {
 		let card = contactList[i].name
 		main.insertAdjacentHTML('afterbegin', createSingleIndex(card))
 	}
-
 }
 
 //-----------------------------------------------------------------------------------------------
 //View Page
+
 
 //function #4 cleanUpView
 function cleanUpView(){
@@ -90,7 +100,7 @@ function renderView(contact) {
 			<button class="button close" value="Close">Close</button>
 		</div>`	
 
-	contactInfo.insertAdjacentHTML("beforeend", contact_info_div)
+	contactInfo.insertAdjacentHTML("afterbegin", contact_info_div)
 
 }
 
@@ -107,12 +117,16 @@ createNewContact.addEventListener('click',(e) => {
 	renderCreate()
 	e.preventDefault()
 })
+
 //function #6 cleanUpCreate
 function cleanUpCreate() {
 	const cards = document.querySelectorAll('.main > *')
 	for (const card of cards)
 		card.remove()
 }
+
+
+
 
 
 //function #7 renderCreate
