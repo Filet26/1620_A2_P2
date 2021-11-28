@@ -10,35 +10,49 @@ const contactList = [ 
 		phone: "123-555-5555",    
 		address: "Portland Oregon",    
 		email: "greenlantern@watchtower.com",  
+	},
+	{    
+		name: "Tom Cruz",    
+		phone: "604-092-8881",    
+		address: "NewYork NYC",    
+		email: "Chungus_Corp@gmail.com",  
 	}
 	
 ]
 
 //index page
 
+const contact_link = document.querySelector('.nav-home')
+contact_link.addEventListener('click', cleanUpIndex)
+contact_link.addEventListener('click', renderIndex)
+
+
 //function #1 cleanUpIndex
-function cleanUpIndex() {
+function cleanUpIndex(e) {
 	const cards = document.querySelectorAll('.contact')
-
-
+	e.preventDefault()
 	for (const card of cards)
 		card.remove()
 }
+
+
 //function #2 createSingleIndex
-function createSingleIndex(person) {
-	const name = person.name
+function createSingleIndex(name) {
+
 	return `<a href="page3.html"><div class="contact"><p>${name}</p></div></a>`
 }
 
-//function #3 renderIndex 
-function renderIndex(contactList) {
+// function #3 renderIndex 
+function renderIndex() {
 	const main = document.querySelector(".main")
-
-	for (const contact of contactList) {
-		const card = createSingleIndex(contact)	
-		main.insertAdjacentHTML("beforeend", card)
+	for (let i = 0; i < contactList.length; i++) {
+		let card = contactList[i].name
+		main.insertAdjacentHTML('afterbegin', createSingleIndex(card))
 	}
+
 }
+
+
 
 
 //View Page
