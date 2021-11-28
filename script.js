@@ -1,4 +1,4 @@
-const contactList = [  
+let contactList = [  
 	{ 
 		name: "Thor Odinson", 
 		phone: "Send A pigeon", 
@@ -25,6 +25,8 @@ const contactList = [ 
 	}
 	
 ]
+
+
 
 //index page ---------------------------------------------------------------------------------
 
@@ -255,6 +257,26 @@ function renderCreate(){
 	cleanUpIndex()
 	renderIndex()
   })
+
+  const addData = (e) => {
+	  e.preventDefault()
+	  let data_stuff = {
+		  name: document.getElementById('contactname').value,
+		  phone: document.getElementById('contactphone').value,
+		  address: document.getElementById('contactaddress').value,
+		  email: document.getElementById('contactemail').value
+		
+	  }
+	  document.forms[0].reset();
+	  contactList.push(data_stuff)
+	  console.log(contactList)
+	  cleanUpIndex()
+	  renderIndex()
+  }
+
+  const save_btn = document.getElementById('savecontact')
+  save_btn.addEventListener('click', addData)
+
 }
 
 //-----------------------------------------------------------------------------------------------
