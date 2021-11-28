@@ -249,6 +249,12 @@ function renderCreate(){
 	</div>
   </div>`
   main.insertAdjacentHTML('afterbegin', contact_form)
+
+  const cancel_button = document.querySelector('.cancel')
+  cancel_button.addEventListener('click', () => {
+	cleanUpIndex()
+	renderIndex()
+  })
 }
 
 //-----------------------------------------------------------------------------------------------
