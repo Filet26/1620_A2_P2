@@ -28,11 +28,11 @@ const contactList = [ 
 
 //index page ---------------------------------------------------------------------------------
 
-window.addEventListener('load', ()=> {
-	cleanUpIndex()
-	renderIndex()
-	e.preventDefault()
-})
+// window.addEventListener('load', ()=> {
+// 	cleanUpIndex()
+// 	renderIndex()
+// 	e.preventDefault()
+// })
 let contact_link = document.querySelector('.nav-home')
 // contact_link.addEventListener('click', cleanUpIndex)
 // contact_link.addEventListener('click', renderIndex)
@@ -53,17 +53,36 @@ function cleanUpIndex() {
 
 
 //function #2 createSingleIndex
-function createSingleIndex(name) {
-	let index = `<a href="page3.html"><div class="contact"><p>${name}</p></div></a>`
-	return index
+function createSingleIndex(contactInformation) {	
+	let name = contactInformation.name
+	const index = document.createElement('div')
+	index.classList.add('contact')
+	const content = document.createTextNode(name)
+	index.appendChild(content)
+	index.addEventListener('click', () => {
+		for (let i = 0; i < 4;i++) {
+			if (contactList[i].name == name) {
+				cleanUpIndex()
+				renderView(contactList[i])
+			}
+			
+		}
+		})
+
+	
+	const main = document.querySelector(".main")
+	main.appendChild(index)
+
+
 }
 
 // function #3 renderIndex 
 function renderIndex() {
 	const main = document.querySelector(".main")
 	for (let i = 0; i < contactList.length; i++) {
-		let card = contactList[i].name
-		main.insertAdjacentHTML('afterbegin', createSingleIndex(card))
+		let card = contactList[i]
+		createSingleIndex(card)
+		// main.insertAdjacentHTML('afterbegin', createSingleIndex(card))
 	}
 }
 
@@ -71,36 +90,33 @@ function renderIndex() {
 //View Page
 
 
-//function #4 cleanUpView
-function cleanUpView(){
-	const cards = document.querySelectorAll('.contactinfo > div')
-	for (const card of cards)
-		card.remove()
-}
-
 //function #5 renderView
-function renderView(contact) {
-	const contactInfo = document.querySelector(".contactinfo")
-
-	const contact_info_div = `<div class="contactname">
-		${contact.name}
+function renderView(info) {
+	const contactInfo = document.querySelector(".main")
+	const contact_info_div = `<div class="contactinfo"><div class="contactname">
+		${info.name}
 		<img
 			src="./img/profile.jpg"
 			class="profilepic"
 			alt="Profile picture"
 		/>
 		</div>
-		<div class="contactemail">email: ${contact.email}</div>
-		<div class="contactphone">cell: ${contact.phone}</div>
+		<div class="contactemail">Email: ${info.email}</div>
+		<div class="contactphone">Cell: ${info.phone}</div>
 		<div class="contactaddress">
-			address: ${contact.address}
+			Address: ${info.address}
 		</div>
 		<div class="buttons">
 			<button class="button edit" value="Edit">Edit</button>
 			<button class="button close" value="Close">Close</button>
-		</div>`	
+		</div></div>`	
 
 	contactInfo.insertAdjacentHTML("afterbegin", contact_info_div)
+	const buttons = document.querySelector('.close')
+	buttons.addEventListener('click', () => {
+		cleanUpIndex()
+		renderIndex()
+	})
 
 }
 
@@ -110,13 +126,11 @@ function renderView(contact) {
 const createNewContact = document.getElementById('newcontact')
 createNewContact.addEventListener('click', (e) => {
 	cleanUpCreate()
-	e.preventDefault()
-})
-
-createNewContact.addEventListener('click',(e) => {
 	renderCreate()
 	e.preventDefault()
 })
+
+
 
 //function #6 cleanUpCreate
 function cleanUpCreate() {
