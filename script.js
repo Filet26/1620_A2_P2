@@ -1,26 +1,32 @@
 const contactList = [  
 	{ 
-		name: "Oliver Queen", 
-		phone: "778-555-1234", 
-		address: "101 Main St, Star City, USA",    
-		email: "greenarrow@watchtower.com",  
+		name: "Thor Odinson", 
+		phone: "Send A pigeon", 
+		address: "926 Thor Street, Asgard",    
+		email: "Send A pigeon Also",  
 	},   
 	{    
-		name: "Jessica Cruz",    
-		phone: "123-555-5555",    
-		address: "Portland Oregon",    
-		email: "greenlantern@watchtower.com",  
+		name: "Tony Stark",    
+		phone: "1-800-Im-dead-lol",    
+		address: "Stevens cemetary",    
+		email: "Tonystark@hotmail.com",  
 	},
 	{    
-		name: "Tom Cruz",    
-		phone: "604-092-8881",    
-		address: "NewYork NYC",    
+		name: "Nemo",    
+		phone: "Im a fish, dont have one",    
+		address: "Saltwater Ave.",    
 		email: "Chungus_Corp@gmail.com",  
+	},
+	{    
+		name: "Peter Parker",    
+		phone: "604-434-3420",    
+		address: "Somewhere Street.",    
+		email: "peter@management.com",  
 	}
 	
 ]
 
-//index page
+//index page ---------------------------------------------------------------------------------
 
 const contact_link = document.querySelector('.nav-home')
 contact_link.addEventListener('click', cleanUpIndex)
@@ -29,7 +35,7 @@ contact_link.addEventListener('click', renderIndex)
 
 //function #1 cleanUpIndex
 function cleanUpIndex(e) {
-	const cards = document.querySelectorAll('.contact')
+	const cards = document.querySelectorAll('.main > *')
 	e.preventDefault()
 	for (const card of cards)
 		card.remove()
@@ -52,9 +58,7 @@ function renderIndex() {
 
 }
 
-
-
-
+//-----------------------------------------------------------------------------------------------
 //View Page
 
 //function #4 cleanUpView
@@ -90,9 +94,22 @@ function renderView(contact) {
 
 }
 
+//--------------------------------------------------------------------------------------------------
+
+
+const createNewContact = document.getElementById('newcontact')
+createNewContact.addEventListener('click', (e) => {
+	cleanUpCreate()
+	e.preventDefault()
+})
+
+createNewContact.addEventListener('click',(e) => {
+	renderCreate()
+	e.preventDefault()
+})
 //function #6 cleanUpCreate
 function cleanUpCreate() {
-	const cards = document.querySelectorAll('.contactedit > div')
+	const cards = document.querySelectorAll('.main > *')
 	for (const card of cards)
 		card.remove()
 }
@@ -100,100 +117,104 @@ function cleanUpCreate() {
 
 //function #7 renderCreate
 function renderCreate(){
-	const contactedit = document.querySelector('.contactedit')
+	const main = document.querySelector('.main')
 
-	const contact_form = `<div class="contactimg">
-	<img
-	  src="./img/profile.jpg"
-	  class="profilepic"
-	  alt="Profile picture"
-	/>
-  </div>
-  <div class="form">
-	<form>
-	  <div class="inputcontainer">
-		<input
-		  type="text"
-		  id="contactname"
-		  name="contactname"
-		  placeholder="Contact Name"
-		/>
-		<button
-		  class="extrafield"
-		  id="extranamefield"
-		  name="extranamefield"
-		>
-		  +
-		</button>
-	  </div>
+	const contact_form = `<div class="contactedit">
+	<div class="contactimg">
+	  <img
+		src="./img/profile.jpg"
+		class="profilepic"
+		alt="Profile picture"
+	  />
+	</div>
+	<div class="form">
+	  <form>
+		<div class="inputcontainer">
+		  <input
+			type="text"
+			id="contactname"
+			name="contactname"
+			placeholder="Contact Name"
+		  />
+		  <button
+			class="extrafield"
+			id="extranamefield"
+			name="extranamefield"
+		  >
+			+
+		  </button>
+		</div>
 
-	  <div class="inputcontainer">
-		<input
-		  type="tel"
-		  id="contactphone"
-		  name="contactphone"
-		  placeholder="Contact Phone"
-		/>
-		<button
-		  class="extrafield"
-		  id="extraphonefield"
-		  name="extraphonefield"
-		>
-		  +
-		</button>
-	  </div>
+		<div class="inputcontainer">
+		  <input
+			type="tel"
+			id="contactphone"
+			name="contactphone"
+			placeholder="Contact Phone"
+		  />
+		  <button
+			class="extrafield"
+			id="extraphonefield"
+			name="extraphonefield"
+		  >
+			+
+		  </button>
+		</div>
 
-	  <div class="inputcontainer">
-		<input
-		  type="text"
-		  id="contactaddress"
-		  name="contactaddress"
-		  placeholder="Contact Address"
-		/>
-		<button
-		  class="extrafield"
-		  id="extraaddressfield"
-		  name="extraaddressfield"
-		>
-		  +
-		</button>
-	  </div>
+		<div class="inputcontainer">
+		  <input
+			type="text"
+			id="contactaddress"
+			name="contactaddress"
+			placeholder="Contact Address"
+		  />
+		  <button
+			class="extrafield"
+			id="extraaddressfield"
+			name="extraaddressfield"
+		  >
+			+
+		  </button>
+		</div>
 
-	  <div class="inputcontainer">
-		<input
-		  type="email"
-		  id="contactemail"
-		  name="contactemail"
-		  placeholder="Contact Email"
-		/>
-		<button
-		  class="extrafield"
-		  id="extraemailfield"
-		  name="extraemailfield"
-		>
-		  +
-		</button>
-	  </div>
+		<div class="inputcontainer">
+		  <input
+			type="email"
+			id="contactemail"
+			name="contactemail"
+			placeholder="Contact Email"
+		  />
+		  <button
+			class="extrafield"
+			id="extraemailfield"
+			name="extraemailfield"
+		  >
+			+
+		  </button>
+		</div>
 
-	  <div class="buttons">
-		<button
-		  type="submit"
-		  class="button save"
-		  id="savecontact"
-		  name="savecontact"
-		>
-		  Save Contact
-		</button>
-		<button
-		  type="reset"
-		  class="button cancel"
-		  id="cancel"
-		  name="cancel"
-		>
-		  Cancel
-		</button>
-	  </div>
-	</form>
+		<div class="buttons">
+		  <button
+			type="submit"
+			class="button save"
+			id="savecontact"
+			name="savecontact"
+		  >
+			Save Contact
+		  </button>
+		  <button
+			type="reset"
+			class="button cancel"
+			id="cancel"
+			name="cancel"
+		  >
+			Cancel
+		  </button>
+		</div>
+	  </form>
+	</div>
   </div>`
-  contactedit.insertAdjacentHTML('beforeend', contact_form)
+  main.insertAdjacentHTML('afterbegin', contact_form)
 }
+
+//-----------------------------------------------------------------------------------------------
