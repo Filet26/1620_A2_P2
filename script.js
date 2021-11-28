@@ -112,10 +112,16 @@ function renderView(info) {
 		</div></div>`	
 
 	contactInfo.insertAdjacentHTML("afterbegin", contact_info_div)
-	const buttons = document.querySelector('.close')
-	buttons.addEventListener('click', () => {
+
+	const close_buttons = document.querySelector('.close')
+	close_buttons.addEventListener('click', () => {
 		cleanUpIndex()
 		renderIndex()
+	})
+
+	const edit_buttons = document.querySelector('.edit')
+	edit_buttons.addEventListener('click', () => {
+		console.log('NOTHING :)')
 	})
 
 }
